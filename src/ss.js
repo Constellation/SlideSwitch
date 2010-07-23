@@ -59,7 +59,8 @@ if(document.querySelectorAll && !window.SlideSwitch)
         if(elm.id !== 'wrap')
           removeClass(elm, 'hide');
       });
-      removeClass(document.querySelector('#content > ol.notes'), 'hide');
+      var note = document.querySelector('#content > ol.notes');
+      if(note) removeClass(document.querySelector('#content > ol.notes'), 'hide');
       removeClass(document.body, 'sliding');
       // unregister
       document.removeEventListener('keydown', this.handler, false);
