@@ -36,6 +36,8 @@ if(document.querySelectorAll && !window.SlideSwitch)
         if(elm.id !== 'wrap')
           addClass(elm, 'hide');
       });
+      var note = document.querySelector('#content > ol.notes');
+      if(note) addClass(note, 'hide');
       addClass(document.body, 'sliding');
       // register
       document.addEventListener('keydown', function(ev){
@@ -57,6 +59,7 @@ if(document.querySelectorAll && !window.SlideSwitch)
         if(elm.id !== 'wrap')
           removeClass(elm, 'hide');
       });
+      removeClass(document.querySelector('#content > ol.notes'), 'hide');
       removeClass(document.body, 'sliding');
       // unregister
       document.removeEventListener('keydown', this.handler, false);
@@ -83,7 +86,7 @@ if(document.querySelectorAll && !window.SlideSwitch)
     SlideSwitch.prototype.LEFT  = function SlideSwitch_LEFT(ev){
       this.prev();
     }
-    SlideSwitch.prototype.SPACE = function SlideSwitch_SPACE(ev){
+    SlideSwitch.prototype.ESCAPE = function SlideSwitch_ESCAPE(ev){
       SlideSwitch.stop();
     }
 
@@ -149,7 +152,7 @@ if(document.querySelectorAll && !window.SlideSwitch)
       return doc.getElementById(id);
     }
     function isTumblrEntryPage(){
-      return /http:\/\/[^\/]+\/post\/\d+/.test(doc.location.href);
+      return /http:\/\/[^\/]+\/(?:post\/\d+|private\/\d+)/.test(doc.location.href);
     }
     var KeyEvent = {
       'DOM_VK_CANCEL'        : 3,
