@@ -105,8 +105,9 @@ if(document.querySelectorAll && !window.SlideSwitch)
 
     function Section(div){
       this.element = div;
-      this.title   = div.getElementsByTagName('h3')[0].textContent;
-      this.shown   = false;
+      var title = div.getElementsByTagName('h3')[0];
+      this.title = title ? title.textContent : "";
+      this.shown = false;
     }
     Section.prototype.show = function Section_show(){
       removeClass(this.element, 'hide');
